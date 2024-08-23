@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_pagewrk/view/home_screen/home_screen.dart';
+import 'package:login_pagewrk/view/signup_page/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -75,8 +76,6 @@ class _SignInState extends State<LoginPage> {
                       return "Please Enter Password";
                     } else if (value.length < 8) {
                       return "Password must be contains 8 characters";
-                      //               } else if (value != _passwordController) {
-                      //              return "wrong password";
                     } else {
                       return null;
                     }
@@ -120,7 +119,7 @@ class _SignInState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Dont have an account?",
+                      "Already have an account?",
                       style: TextStyle(color: Colors.black, fontSize: 18),
                     ),
                     InkWell(
@@ -128,7 +127,7 @@ class _SignInState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginPage(),
+                            builder: (context) => SignUp(),
                           ),
                         );
                       },

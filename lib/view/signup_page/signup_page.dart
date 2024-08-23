@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_pagewrk/view/home_screen/home_screen.dart';
+import 'package:login_pagewrk/view/login_page/login_page.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -11,7 +13,7 @@ class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confpassController = TextEditingController();
+  TextEditingController _confirmpassController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 150,
+                      height: 100,
                     ),
                     Text(
                       "Sign Up for Free",
@@ -88,15 +90,10 @@ class _SignUpState extends State<SignUp> {
                 height: 10,
               ),
               TextFormField(
-                  controller: _confpassController,
-                  validator: (_confpassController) {
-                    if (_confpassController == null ||
-                        _confpassController.isEmpty) {
-                      return "Please Enter Password";
-                    } else if (_confpassController.length < 8) {
-                      return "Password must be contains 8 characters";
-                    } else if (_confpassController != _passwordController) {
-                      return "wrong password";
+                  controller: _confirmpassController,
+                  validator: (value) {
+                    if (value! != _passwordController.text) {
+                      return "wrong  password";
                     } else {
                       return null;
                     }
@@ -116,14 +113,11 @@ class _SignUpState extends State<SignUp> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  final form = _formKey.currentState;
-                  if (form != null && form.validate()) {
-                    save();
-                  } else {
+                  if (_formKey.currentState!.validate()) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SignUp(),
+                        builder: (context) => LoginPage(),
                       ),
                     );
                   }
@@ -165,5 +159,3 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
-
-void save() {}
